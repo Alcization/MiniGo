@@ -1,0 +1,34 @@
+# UPDATE 28/3
+- [2] float = [2] int là đúng
+- [2] int = [3] int là sai
+- khai báo type không được chung với tên hàm và tên biến, hàm
+```py
+var A = 1;
+type A struct {} # lỗi
+```
+- Const sẽ được tính giá trị để tính kích thước array
+```py
+const a = 1 + 2;
+var b [a] int;
+var c [4] int = b; # sai vì 4 != 3
+```
+# hướng dẫn 
+- khai báo type không được chung với tên hàm và tên biến, hàm:
+```py
+def visitProgram(self, ast: Program,c : None):
+    def visitMethodDecl(ast: MethodDecl, c: StructType) -> MethodDecl:
+        // TODO
+
+    list_str = ["getInt", "putInt", "putIntLn", ...........]
+    for item in ast.decl:
+        if isinstance(item, Type):
+            if item.name in list_str:
+                raise Redeclared(StaticErrorType(), item.name)
+            list_str.append(item.name)
+        // TODO
+```
+- Phần array cần chỉnh
+```py
+if isinstance(LSH_type, ArrayType) and isinstance(RHS_type, ArrayType):
+    return # TOOO với các phần tử trong dimens đều là IntLiteral (này sẽ được chuyển đổi ở bước sau)
+```
